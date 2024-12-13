@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Quotes</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Edit your Post</h1>
+        <form method="post" action="/update/<%=post._id%>">
+            <textarea placeholder="What's on your Mind" name="content" id="editPost"><%=post.content %></textarea>
+            <input type="submit" value="update post">
+        </form>
+    </div>
+
+</body>
+
+</html>
