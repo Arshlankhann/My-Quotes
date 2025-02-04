@@ -45,7 +45,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/home", isLoggedIn, async (req, res) => {
-    let posts = await postModel.find().populate("user")
+    let posts = await postModel.find()
     res.render("home", { posts })
     // console.log("allpost :", posts)
 
