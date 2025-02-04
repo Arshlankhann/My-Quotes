@@ -7,8 +7,10 @@ const path = require("path")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const post = require("./models/post")
-const upload = require("./config/multerconfig")
+// const upload = require("./config/multerconfig")
 const { read } = require("fs")
+const crypto = require("crypto")
+const multer = require("multer")
 
 
 app.set("view engine", "ejs");
@@ -18,17 +20,37 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser())
 
 
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './public/images/uploads')
+    },
+    filename: function (req, file, cb) {
+        crypto.randomBytes(12, function(err,bytes){
+            const fn =bytes.toString("hex") + path.extname(file.originalname)
+            cb(null, fn)
+        })
+      
+    }
+  })
+  
+  const upload = multer({ storage: storage })
+
+  
+
 // Making Rought
 app.get("/", (req, res) => {
     res.render("login")
 })
 
 app.get("/home", isLoggedIn, async (req, res) => {
-    let posts = await postModel.find()
+    let posts = await postModel.find().populate("user")
     res.render("home", { posts })
     // console.log("allpost :", posts)
 
 })
+
 
 
 
@@ -69,6 +91,7 @@ app.get("/like/:id", isLoggedIn, async (req, res) => {
     await post.save()
     res.redirect("/profile")
 })
+
 app.get("/homelike/:id", isLoggedIn, async (req, res) => {
     let post = await postModel.findOne({ _id: req.params.id }).populate("user")
 
@@ -136,25 +159,62 @@ app.post("/register", async (req, res) => {
 })
 
 
+// app.post("/login", async (req, res) => {
+
+//     // extracting data from body
+//     let { email, password } = req.body
+
+//     // checking user avalibility
+//     let user = await userModel.findOne({ email })
+//     if (!user) return res.status(500).send("Something went wrong")
+
+//     // comparing ginven password to original password
+//     bcrypt.compare(password, user.password, function (err, result) {
+//         if (result) {
+//             let token = jwt.sign({ email: email, userid: user._id }, "Protect")
+//             res.cookie("token", token)
+//             res.status(200).redirect("home")
+//         }
+//         else res.send("/login")
+//     })
+// })
+
 app.post("/login", async (req, res) => {
-
-    // extracting data from body
-    let { email, password } = req.body
-
-    // checking user avalibility
-    let user = await userModel.findOne({ email })
-    if (!user) return res.status(500).send("Something went wrong")
-
-    // comparing ginven password to original password
-    bcrypt.compare(password, user.password, function (err, result) {
-        if (result) {
-            let token = jwt.sign({ email: email, userid: user._id }, "Protect")
-            res.cookie("token", token)
-            res.status(200).redirect("home")
+    try {
+        // Extract and sanitize input
+        let { email, password } = req.body;
+        if (!email || !password) {
+            return res.status(400).send("<script>alert('Please enter both email and password.'); window.location='/';</script>");
         }
-        else res.send("/login")
-    })
-})
+
+        email = email.trim().toLowerCase();
+
+        // Check if user exists
+        let user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(401).send("<script>alert('Incorrect email or password. Please try again.'); window.location='/';</script>");
+        }
+
+        // Compare passwords securely
+        bcrypt.compare(password, user.password, (err, result) => {
+            if (err || !result) {
+                return res.status(401).send("<script>alert('Incorrect email or password. Please try again.'); window.location='/';</script>");
+            }
+
+            // Generate JWT token
+            let token = jwt.sign({ email: email, userid: user._id }, "Protect", { expiresIn: "1h" });
+
+            // Set cookie and redirect
+            res.cookie("token", token, { httpOnly: true, secure: process.env.NODE_ENV === "production" });
+            res.status(200).redirect("home");
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("<script>alert('Something went wrong. Please try again later.'); window.location='/';</script>");
+    }
+});
+
 
 app.get("/logout", (req, res) => {
     res.cookie("token", "")

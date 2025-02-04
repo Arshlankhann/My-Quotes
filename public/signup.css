@@ -1,33 +1,141 @@
-*{
+/* General Styles */
+* {
     margin: 0;
     padding: 0;
-    /* font-family: sans-serif; */
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
-.container{
-    text-align: center;
+
+body {
+    background-color: #f4f4f4;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    text-align: center;
     padding: 40px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    padding-top: 250px;
 }
-.mainheading{
-    padding-bottom: 5px;
-    font-size:xx-large;
-    font-size:350%;
-    margin-left: 60px;
+
+/* Headings */
+.mainheading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1a4480;
+    margin-bottom: 10px;
 }
-h3{
-    font-weight: 100;
-    text-align: justify;
-    margin-left: 473px;
+
+h3 {
+    font-weight: 300;
+    text-align: left;
+    margin-top: 10px;
+    padding-left: 50px;
 }
-input{
+
+h4,
+h5 {
+    font-weight: 200;
+}
+
+h4 a {
+    text-decoration: none;
+    color: #1a4480;
+    transition: color 0.3s ease-in-out;
+}
+
+h4 a:hover {
+    color: #0d2d5a;
+}
+
+/* Forms & Inputs */
+input {
     height: 40px;
-    width: 330px;
+    width: 100%;
+    max-width: 330px;
     border-radius: 5px;
     text-align: center;
     margin: 10px;
-    border: 1px solid black;
+    border: 1px solid #ccc;
+    transition: border 0.3s ease-in-out;
 }
-.submitbtn{
- 
-    background-color: rgb(58,127,249);
+
+input:focus {
+    border-color: #1a4480;
+    outline: none;
+}
+
+/* Buttons */
+.submitbtn1,
+.submitbtn2 {
+    height: 45px;
+    width: 100%;
+    max-width: 330px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+.submitbtn2 {
+    background-color: rgb(26, 68, 128);
+}
+
+.submitbtn2:hover {
+    background-color: rgb(13, 45, 90);
+}
+
+.submitbtn1 {
+    background-color: rgb(0, 193, 0);
+}
+
+.submitbtn1:hover {
+    background-color: #218838;
+}
+
+/* Footer */
+footer {
+    color: rgb(85, 85, 85);
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer a {
+    text-decoration: none;
+    color: rgb(85, 85, 85);
+    transition: color 0.3s ease-in-out;
+}
+
+footer a:hover {
+    color: #1a4480;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .mainheading {
+        font-size: 2rem;
+    }
+
+    h3 {
+        
+        text-align: left;
+        margin-top: 10px;
+        padding-left: 15 px;
+    }
 }

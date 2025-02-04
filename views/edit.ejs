@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Quotes</title>
+    <title>Edit Quote</title>
+    <link rel="stylesheet" href="/edit.css">
 </head>
-
 <body>
     <div class="container">
-        <h1>Edit your Post</h1>
-        <form method="post" action="/update/<%=post._id%>">
-            <textarea placeholder="What's on your Mind" name="content" id="editPost"><%=post.content %></textarea>
-            <input type="submit" value="update post">
+        <h1>Edit Quote</h1>
+        <form id="editQuoteForm" method="post" action="/update/<%=post._id%>">
+            <label for="quoteText">Quote Text:</label>
+            <textarea id="quoteText" name="content" rows="4" required><%=post.content %></textarea>
+            <label for="quoteId">Date and Time</label>
+            <p><%=post.date%></p>
+            <button type="submit">Update Quote</button>
         </form>
+        <div id="message"></div>
     </div>
-
 </body>
-
 </html>

@@ -14,20 +14,19 @@
         <h4>Please enter login details below </h4>
         <form action="/login" method="post">
             <h3>Email address </h3>
-            <input type="text" placeholder="email" name="email">
+            <input type="text" placeholder="email" name="email" required>
             <h3>Password</h3>
-            <input type="password" placeholder="password" name="password">
+            <input type="password" placeholder="password" name="password" required>
             <br>
             <input class="submitbtn" type="submit" value="Login Account" name="Login Account">
         </form>
-        <h4 id="secondh2">By signing in, you agree to the Goodreads <a href="#">Terms of Service</a> and <a
+        <h4 id="secondh2">By signing in, you agree to the My Quotes <a href="#">Terms of Service</a> and <a
                 href="#">Privacy Policy</a></h4>
         <h5>New in My Quotes ?</h5>
         <form action="/signup" method="get">
             <input class="submitbtn2" type="submit" value="Create Account" name="Signup Account">
         </form>
         <footer>
-            <h4>
                <a href="#"> Terms of Service &nbsp; &nbsp; Privacy &nbsp; &nbsp; Help</a>
                 <br>© 2025 My Quotes, Inc.</h4>
         </footer>

@@ -5,12 +5,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/My_Quotes')  //new
 const postSchema = mongoose.Schema({
     username: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"post"
+        ref:"user"
         
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "post"
+        ref: "user"
     },
     profilepic: {
         type: String,

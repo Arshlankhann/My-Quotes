@@ -1,111 +1,334 @@
-* {
+body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
-    padding: 0;
-}
-.nav{
-    text-align: center;
-    height: 60px;
-    background-color: aqua;
+    background: linear-gradient(to bottom right, #e0eafc, #cfdef3);
+    color: #333;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-textarea{
+
+textarea {
     height: 50px;
     width: 500px;
     border-radius: 10px;
     text-align: center;
     justify-content: center;
+    font-size: large;
 }
-textarea ::placeholder{
+
+textarea ::placeholder {
     display: flex;
     text-align: center;
     justify-content: center;
 }
-input{
+
+input {
     text-align: center;
 }
-p{
+
+p {
     background-color: transparent;
 }
-.container{
-    text-align:center;
-    justify-content:center;
-    align-items: center;
+
+.btn1 {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
 }
-.btn{
-    height: 40px;
-    width: 150px;
-    border-radius: 15px;
-    background-color: rgb(10, 103, 139);
-    margin: 20px 0px 20px 0px;
-}
-.logout{
-    display: block;
-    background-color: red;
-    padding: 5px 10px;
-    border-radius: 5px;    
-    position: absolute;
-    right: 20px;
-    margin-top: 20px;
+
+.btn1:hover {
+    background-color: #218838;
+    font-size: 23px;
 
 }
-a{
-    text-decoration: none;
-    color: white;
-}
-h2{
+
+
+
+
+
+h2 {
     margin: 20px 0px 10px 0px;
 }
-.heading{
+
+.heading {
     margin: 10px 0px 10px 0px;
 }
-#hp{
+
+#hp {
     margin: 0px 0px 30px 40px;
 }
-.userPost{
-    margin-left: 40px;
-    margin-bottom: 20px;
-    width: 45%;
-    height: 20%;
-    border: 1px solid white;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: rgb(176, 207, 117);
-    display: inline-block;
-}
-#likeBtn{
-  
+
+
+
+
+.thumbnail {
     display: flex;
     text-align: center;
     justify-content: center;
-    background-color: red;
-    height: 25px;
-    width: 50px;
-    border-radius: 2px;
-    flex-direction: column-reverse;
+    padding-top: 80px;
 }
-#editBtn{
-    color: rgb(145, 135, 135);
-    background-color: transparent;
+
+.image img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fbc2eb;
 }
-.username{
-    color: blue;
+
+
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    top: 0%;
+    background-color: #343a40;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    color: white;
+    z-index: 1000;
 }
-small{
-    color: orangered;
+
+.navbar .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 50px;
 }
-.thumbnail{
+
+.navbar .nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    font-size: 20px;
+    transition: 0.2s;
+    color: rgb(26, 145, 240);
+}
+
+.navbar .btn {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar .btn button {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 40px;
+    margin-left: 20px;
+}
+
+.navbar .btn button:hover {
+    background-color: #c82333;
+}
+
+.createpost {
+    justify-content: center;
     display: flex;
     text-align: center;
-    justify-content: center;
 }
-img{
-    height: 50px;
-    width: 50px;
-    border-radius: 5px;
-    margin: 10px 10px;
+
+.footer {
+    height: 18rem;
+    background-color: #343a40;
+    color: white;
+    display: flex;
+    padding: 20px 50px 0px 50px;
+}
+
+.invertimg {
+    filter: invert(100%);
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0px 50px 0px 50px;
+}
+
+footer ul li {
+    padding: 5px 0px 5px 0px;
+
+}
+
+#bold {
+    font-size: large;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: rgb(26, 145, 240);
+}
+
+.leftfooter {
+    padding: 10px 0px 0px 220px;
+}
+
+.f2 {
+    margin: 10px;
+}
+
+a {
+    color: #555;
+}
+
+a:hover {
+    color: #4CAF50;
+}
+
+
+
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    flex: 1;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quote-category {
+    margin-bottom: 30px;
+}
+
+.quote-category h2 {
+    margin-bottom: 15px;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.quote-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 20px;
+}
+
+.quote-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
     overflow: hidden;
-    background-repeat: no-repeat;
-    background-size: 100vw 100vw;
+}
+
+.quote-card:hover {
+    transform: translateY(-5px);
+}
+
+.quote-text {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.quote-author {
+    font-weight: bold;
+    text-align: right;
+    color: #777;
+}
+
+.quote-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.quote-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #888;
+    transition: color 0.2s;
+}
+
+.fa-thumbs-up:hover {
+    color: #4CAF50;
+}
+
+.fa-edit:hover {
+    color: #007bff;
+}
+
+.fa-trash-alt:hover {
+    color: #f44336;
+}
+
+#likeBtn {
+    text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+
+    .container{
+        width: 90%;
+    }
+ 
+
+    .leftfooter {
+        padding: 0px;
+    }
+
+    .footer ul {
+        padding: 0px;
+    }
+
+    .navbar .brand {
+        margin-right: 25px;
+    }
+
+    .footer {
+        display: block;
+        height: auto;
+        background-color: #343a40;
+        color: white;
+        padding: 20px 50px 0px 50px;
+    }
+
+    .quote-list {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: auto
+    }
+    textarea {
+        width: 350px;
+        height: 100px;
+    }
 }

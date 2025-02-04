@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,24 +9,31 @@
 
 <body>
     <div class="container">
-        <div class="mainheading">Create New Account</div>
+        <div class="mainheading">Create Account</div>
         <form action="/register" method="post">
             <h3>Name</h3>
-            <input type="text" placeholder="name" name="name">
+            <input type="text" placeholder="name" name="name" required>
             <h3>Username</h3>
-            <input type="text" placeholder="username" name="username">
+            <input type="text" placeholder="username" name="username" required>
             <h3>Password</h3>
-            <input type="password" placeholder="password" name="password">
+            <input type="password" placeholder="password" name="password" required>
             <h3>E-mail</h3>
-            <input type="email" placeholder="email" name="email">
+            <input type="email" placeholder="email" name="email" required>
             <h3>Age</h3>
-            <input type="number" placeholder="age" name="age">
+            <input type="number" placeholder="age" name="age" required>
             <br>
-            <input class="submitbtn" type="submit" value="Create Account" name="Create Account">
+            <input class="submitbtn1" type="submit" value="Create Account" name="Create Account">
         </form>
+        <h4 id="secondh2">By signing in, you agree to the My Quotes <br><a href="#">Terms of Service</a> and <a
+            href="#">Privacy Policy</a></h4>
         <form action="/" method="get">
-            <input class="submitbtn" type="submit" value="Login Account" name="login Account">
+            <h5>Already have an account ?</h5>
+            <input class="submitbtn2" type="submit" value="Login Account" name="login Account">
         </form>
+        <footer>
+            <a href="#"> Terms of Service &nbsp; &nbsp; Privacy &nbsp; &nbsp; Help</a>
+             <br>© 2025 My Quotes, Inc.</h4>
+     </footer>
     </div>
 </body>
 

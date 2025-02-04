@@ -4,15 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Quotes</title>
+    <link rel="stylesheet" href="/profileupload.css">
 </head>
 <body>
-    <div class="container">
-        <h3>Upload Profile Picture</h3>
-        <form autocomplete="off" action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="image">
-            <input type="submit" value="Upload File">
-        </form>
-    </div>
     
+    
+<div class="container">
+    <h2>Update Profile Picture</h2>
+
+    <div class="profile-picture-preview">
+        <img id="imagePreview" src="/images/uploads/default.jpg" alt="Profile Picture">
+    </div>
+
+    <form id="profilePictureForm" autocomplete="off" action="/upload" method="post" enctype="multipart/form-data">
+        <label for="profilePicture">Choose New Picture:</label>
+        <div class="custom-file-upload">
+            <input type="file" id="profilePicture" name="image" accept="image/*" required>
+            <span>Choose a file</span> </div>
+        <div class="error-message" id="errorMessage"></div>
+        <button type="submit">Update Picture</button>
+        
+    </form>
+</div>
+    
+
+
+<script>
+    // const form = document.getElementById('profilePictureForm');
+    const imagePreview = document.getElementById('imagePreview');
+    const fileInput = document.getElementById('profilePicture');
+    // const errorMessage = document.getElementById('errorMessage');
+
+    fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.src = "/images/uploads/default.jpg"; // Reset to default if no file selected
+        }
+    });
+
+    // form.addEventListener('submit', function(event) {
+    //     event.preventDefault();
+
+    //     errorMessage.textContent = ""; // Clear any previous errors
+    //     const file = fileInput.files[0];
+
+    //     if (!file) {
+    //         errorMessage.textContent = "Please select a picture.";
+    //         return;
+    //     }
+ 
+    //     // In a real application, you would send the image file to your server:
+    //     const formData = new FormData(form);
+
+    //     /*
+    //     fetch('/update_profile_picture', {  // Replace with your server endpoint
+    //         method: 'POST',
+    //         body: formData
+    //     })
+    //     .then(response => { ... })
+    //     .catch(error => { ... });
+    //     */
+
+    //     alert("Profile picture updated (Simulated).");
+    // });
+</script>
+
+
 </body>
 </html>
