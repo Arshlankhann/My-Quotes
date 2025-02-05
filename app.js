@@ -11,7 +11,14 @@ const post = require("./models/post")
 const { read } = require("fs")
 const crypto = require("crypto")
 const multer = require("multer")
+const mongoose = require("mongoose")
+let dotenv = require('dotenv')
+require("dotenv").config()
 
+const connectDB = async()=>{
+    await mongoose.connect(process.env.MONGODB_URI)
+}
+connectDB()
 
 app.set("view engine", "ejs");
 app.use(express.json())
@@ -238,6 +245,6 @@ function isLoggedIn(req, res, next) {
 }
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
     console.log("App is listening to port 3000")
 })
