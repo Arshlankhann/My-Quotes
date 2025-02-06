@@ -35,7 +35,7 @@
                 <% for(let post of posts.reverse()){%>
                     <div class="quote-card">
                         <p class="quote-text">"<%=post.content%>"</p>
-                        <p class="quote-author">- <%=post.user.username%></p>
+                        <p class="quote-author"> - <%= post.user ? post.user.username : "Unknown" %></p>
                         <div class="quote-buttons">
                             <small>
                                 <%= post.likes.length%> Likes
