@@ -234,15 +234,34 @@ app.post("/delete/:id", async (req, res) => {
     res.redirect("/profile")
 })
 
+// function isLoggedIn(req, res, next) {
+//     if (req.cookies.token === "") res.redirect("login")
+//     else {
+//         // checking valid token
+//         let data = jwt.verify(req.cookies.token, "Protect")
+//         req.user = data
+//         next()
+//     }
+// }
+
+
+
 function isLoggedIn(req, res, next) {
-    if (req.cookies.token === "") res.redirect("login")
-    else {
-        // checking valid token
-        let data = jwt.verify(req.cookies.token, "Protect")
-        req.user = data
-        next()
+    const token = req.cookies.token || req.header('Authorization')?.replace('Bearer ', '');
+  
+    if (!token) {
+      return res.redirect("/login"); // Redirect to login page
     }
-}
+  
+    try {
+      const decoded = jwt.verify(token, "Protect");
+      req.user = decoded;
+      next();
+    } catch (err) {
+      res.status(400).json({ error: 'Invalid token' });
+    }
+  };
+  
 
 
 app.listen(process.env.PORT, () => {
