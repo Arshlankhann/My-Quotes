@@ -15,7 +15,7 @@ const mongoose = require("mongoose")
 let dotenv = require('dotenv')
 require("dotenv").config()
 
-const connectDB = async()=>{
+const connectDB = async () => {
     await mongoose.connect(process.env.MONGODB_URI)
 }
 connectDB()
@@ -31,20 +31,20 @@ app.use(cookieParser())
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './public/images/uploads')
+        cb(null, './public/images/uploads')
     },
     filename: function (req, file, cb) {
-        crypto.randomBytes(12, function(err,bytes){
-            const fn =bytes.toString("hex") + path.extname(file.originalname)
+        crypto.randomBytes(12, function (err, bytes) {
+            const fn = bytes.toString("hex") + path.extname(file.originalname)
             cb(null, fn)
         })
-      
-    }
-  })
-  
-  const upload = multer({ storage: storage })
 
-  
+    }
+})
+
+const upload = multer({ storage: storage })
+
+
 
 // Making Rought
 app.get("/", (req, res) => {
@@ -248,20 +248,20 @@ app.post("/delete/:id", async (req, res) => {
 
 function isLoggedIn(req, res, next) {
     const token = req.cookies.token || req.header('Authorization')?.replace('Bearer ', '');
-  
+
     if (!token) {
-      return res.redirect("/login"); // Redirect to login page
+        return res.redirect("/login"); // Redirect to login page
     }
-  
+
     try {
-      const decoded = jwt.verify(token, "Protect");
-      req.user = decoded;
-      next();
+        const decoded = jwt.verify(token, "Protect");
+        req.user = decoded;
+        next();
     } catch (err) {
-      res.status(400).json({ error: 'Invalid token' });
+        res.status(400).json({ error: 'Invalid token' });
     }
-  };
-  
+};
+
 
 
 app.listen(process.env.PORT, () => {
